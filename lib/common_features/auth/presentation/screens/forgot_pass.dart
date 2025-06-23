@@ -86,7 +86,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 onPressed: () {
                   final email = searchByEmailController.text.trim();
                   print('Send OTP to: $email');
-                  // TODO: Add send OTP logic here
+                  //  Add send OTP logic here
+
+                  Navigator.pushNamed(context, '/resetPass');
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,
