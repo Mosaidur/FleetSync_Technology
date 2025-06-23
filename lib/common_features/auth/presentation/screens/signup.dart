@@ -1,8 +1,8 @@
+import 'package:fleetsynctechnology/shared/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
-import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/widgets/customTextField.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

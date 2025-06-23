@@ -7,6 +7,7 @@ import 'package:fleetsynctechnology/common_features/auth/presentation/screens/re
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/signup.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
+import 'package:fleetsynctechnology/role_company/Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'config/theme.dart';
@@ -33,21 +34,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Themed App',
-      theme: themeProvider.isDarkMode
-          ? AppTheme.darkTheme
-          : AppTheme.lightTheme,
+      theme: themeProvider.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
-        '/otpVerify': (context) =>  OtpVerificationScreen(),
-        '/forgotPass': (context) => ForgotPasswordScreen(),
-        '/setPass': (context) => SetPasswordScreen(),
-        '/resetPass': (context) => ResetPasswordScreen(),
-        '/resetPassOTP': (context) => ResetPasswordOtpScreen(),
-        '/selectRole' : (context) => SelectRoleScreen(),
-
+        '/otpVerify': (context) => const OtpVerificationScreen(),
+        '/forgotPass': (context) => const ForgotPasswordScreen(),
+        '/setPass': (context) => const SetPasswordScreen(),
+        '/resetPass': (context) => const ResetPasswordScreen(),
+        '/resetPassOTP': (context) => const ResetPasswordOtpScreen(),
+        '/selectRole': (context) => const SelectRoleScreen(),
+        '/driverPersonalInfo': (context) => const DriverRegPersonalInfoScreen(),
+        // '/driverVehicleInfo' : (context) => const DriverVehicleInfoScreen(),
+        // Add other routes as needed
       },
     );
   }

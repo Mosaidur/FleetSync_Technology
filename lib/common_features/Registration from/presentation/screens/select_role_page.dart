@@ -130,6 +130,10 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
                   // Continue logic
                   print("Selected role: $selectedRole");
 
+                  if (selectedRole == "Driver"){
+                    //driver personal Info page
+                    Navigator.pushNamed(context, '/driverPersonalInfo');
+                  }
 
                   // Navigator.pushNamed(context, '/selectRole');
 

@@ -1,4 +1,4 @@
-import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/widgets/customTextField.dart';
+import 'package:fleetsynctechnology/shared/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
