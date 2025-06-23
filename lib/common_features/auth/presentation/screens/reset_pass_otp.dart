@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
 
-class OtpVerificationScreen extends StatefulWidget {
-  const OtpVerificationScreen({super.key});
+class ResetPasswordOtpScreen extends StatefulWidget {
+  const ResetPasswordOtpScreen({super.key});
 
   @override
-  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
+  State<ResetPasswordOtpScreen> createState() => _ResetPasswordOtpScreenState();
 }
 
-class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+class _ResetPasswordOtpScreenState extends State<ResetPasswordOtpScreen> {
   final List<TextEditingController> otpControllers = List.generate(6, (_) => TextEditingController());
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
 
@@ -46,6 +46,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
 
+
   void validateAndSubmitOtp(BuildContext context) {
     final otp = getOtpCode().trim();
 
@@ -62,7 +63,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     print("Entered OTP: $otp");
 
     // Proceed to the reset password screen
-    Navigator.pushNamed(context, '/setPass');
+    Navigator.pushNamed(context, '/resetPass');
   }
 
 
@@ -179,26 +180,34 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               ),
             ),
 
+
             const SizedBox(height: 24),
 
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  print("Resend Code tapped");
-                  // Add resend OTP logic here
-                },
-                child: Text(
-                  "Resend Code",
-                  style: TextStyle(
-                    color: AppColors.themeRed,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.themeRed,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
+
+
+            // Center(
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       print("Resend Code tapped");
+            //       // Add resend OTP logic here
+            //     },
+            //     child: Text(
+            //       "Resend Code",
+            //       style: TextStyle(
+            //         color: AppColors.themeRed,
+            //         fontWeight: FontWeight.bold,
+            //         decoration: TextDecoration.underline,
+            //         decorationColor: AppColors.themeRed,
+            //         fontSize: 16,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+
+
+
+
           ],
         ),
       ),

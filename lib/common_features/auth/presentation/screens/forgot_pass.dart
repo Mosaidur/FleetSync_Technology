@@ -88,7 +88,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   print('Send OTP to: $email');
                   //  Add send OTP logic here
 
-                  Navigator.pushNamed(context, '/resetPass');
+                  // Navigator.pushNamed(context, '/resetPass');
+                  Navigator.pushNamed(context, '/resetPassOTP');
 
                 },
                 style: ElevatedButton.styleFrom(
