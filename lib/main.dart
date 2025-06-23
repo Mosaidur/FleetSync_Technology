@@ -1,15 +1,16 @@
-import 'package:fleetsynctechnology/common_features/Registration%20from/presentation/screens/select_role_page.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/forgot_pass.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/otpVerify.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/reset_pass_otp.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/set_password.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/reset_pass.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/signup.dart';
+import 'package:fleetsynctechnology/common_features/select%20role/presentation/screens/select_role_page.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
 import 'package:fleetsynctechnology/role_company/Company%20Registration%20Form/presentation/screens/company_reg_form.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
+import 'package:fleetsynctechnology/role_fule_provider/Fuel%20Provider%20Registration%20Form/presentation/screens/fuel_provider_reg_from.dart';
 import 'package:fleetsynctechnology/role_machanics/Machanics%20Registration%20Form/presentation/screens/machanics_reg_from.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,10 +63,10 @@ class MyApp extends StatelessWidget {
         '/mechanicRegFormScreen': (context) => const MechanicRegFormScreen(),
 
         // Role 5: Cooks
-        // (Add screen route here when implemented)
+
 
         // Role 6: Fuel Provider
-        // (Add screen route here when implemented)
+        '/fuelProviderRegFormScreen' : (context) => const FuelProviderRegFormScreen(),
 
 
 
