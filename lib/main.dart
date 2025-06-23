@@ -8,6 +8,7 @@ import 'package:fleetsynctechnology/common_features/select%20role/presentation/s
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
 import 'package:fleetsynctechnology/role_company/Company%20Registration%20Form/presentation/screens/company_reg_form.dart';
+import 'package:fleetsynctechnology/role_cooks/Cooks%20Registration%20Form/presentation/screens/cooks_reg_from.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
 import 'package:fleetsynctechnology/role_fule_provider/Fuel%20Provider%20Registration%20Form/presentation/screens/fuel_provider_reg_from.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
         '/mechanicRegFormScreen': (context) => const MechanicRegFormScreen(),
 
         // Role 5: Cooks
+        '/cookRegFormScreen' : (context) => const CookRegFormScreen(),
 
 
         // Role 6: Fuel Provider

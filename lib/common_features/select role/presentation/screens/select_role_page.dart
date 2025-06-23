@@ -137,12 +137,14 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
                   Navigator.pushNamed(context, '/companyRegFormScreen');
 
                   }else if (selectedRole == "Mechanics" ){
-                    Navigator.pushNamed(context, '/fuelProviderRegFormScreen');
 
-                    // Navigator.pushNamed(context, '/mechanicRegFormScreen');
+                    Navigator.pushNamed(context, '/mechanicRegFormScreen');
                   }else if (selectedRole == 'Fuel Provider' ){
 
                     Navigator.pushNamed(context, '/fuelProviderRegFormScreen');
+                  }else if (selectedRole == 'Cook' ){
+
+                    Navigator.pushNamed(context, '/cookRegFormScreen');
                   }
 
                   // Navigator.pushNamed(context, '/selectRole');

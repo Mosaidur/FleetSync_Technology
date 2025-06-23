@@ -6,37 +6,34 @@ import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
 import 'package:fleetsynctechnology/shared/widgets/customTextField.dart';
 
-class MechanicRegFormScreen extends StatefulWidget {
-  const MechanicRegFormScreen({super.key});
+
+class CookRegFormScreen extends StatefulWidget {
+  const CookRegFormScreen({super.key});
 
   @override
-  State<MechanicRegFormScreen> createState() => _MechanicRegFormScreenState();
+  State<CookRegFormScreen> createState() => _CookRegFormScreenState();
 }
 
-class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController shopNameController = TextEditingController();
-  final TextEditingController repairTypesController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController websiteController = TextEditingController();
-  final TextEditingController languageController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+class _CookRegFormScreenState extends State<CookRegFormScreen> {
+  final firstNameController = TextEditingController();
+  final foodServiceNameController = TextEditingController();
+  final cuisineTypeController = TextEditingController();
+  final addressController = TextEditingController();
+  final cityController = TextEditingController();
+  final stateController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final websiteController = TextEditingController();
+  final descriptionController = TextEditingController();
   final TextEditingController certificateUploadController = TextEditingController();
-
-  String hasPhysicalShop = 'Yes';
-  String offersMobileAssistance = 'Yes';
-
-  final List<String> languageOptions = ['English', 'Spanish', 'Bengali'];
+  final List<String> languageOptions = ['English', 'Spanish', 'French'];
+  String? selectedLanguage;
+  String fixedLocation = 'Yes';
+  String mobileService = 'Yes';
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final isDark = themeProvider.isDarkMode;
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     final textColor = isDark ? AppColors.primaryTextOnDark : AppColors.primaryTextOnLight;
 
     return Scaffold(
@@ -51,17 +48,16 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
         actions: [
           IconButton(
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () => themeProvider.toggleTheme(),
+            onPressed: () => Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
           )
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CustomText14(text: "Personal Information", color: AppColors.themeGreen, fontWeight: FontWeight.bold),
-            const SizedBox(height: 16),
             const CustomText14(text: "Upload Photo", color: Colors.grey),
             Center(
               child: CircleAvatar(
@@ -78,34 +74,24 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText14(text: "First Name", color: textColor),
-                      CustomTextField(controller: firstNameController, label: ''),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText14(text: "Last Name", color: textColor),
-                      CustomTextField(controller: lastNameController, label: ''),
+                      CustomTextField(controller: firstNameController),
                     ],
                   ),
                 ),
               ],
             ),
-            CustomText14(text: "Shop Name", color: textColor),
-            CustomTextField(controller: shopNameController, label: ''),
-            CustomText14(text: "Types Of Repairs", color: textColor),
-            CustomTextField(controller: repairTypesController, label: ''),
-            CustomText14(text: "Do you have a physical repair shop?", color: textColor),
+            CustomText14(text: "Food Service Name", color: textColor),
+            CustomTextField(controller: foodServiceNameController),
+            CustomText14(text: "Types Of Cuisines", color: textColor),
+            CustomTextField(controller: cuisineTypeController),
+            CustomText14(text: "Do you sell food from a fixed location?", color: textColor),
             Row(
               children: [
                 Expanded(
                   child: RadioListTile<String>(
                     value: 'Yes',
-                    groupValue: hasPhysicalShop,
-                    onChanged: (val) => setState(() => hasPhysicalShop = val!),
+                    groupValue: fixedLocation,
+                    onChanged: (val) => setState(() => fixedLocation = val!),
                     title: Text('Yes', style: TextStyle(color: textColor)),
                     activeColor: AppColors.themeGreen,
                   ),
@@ -113,22 +99,22 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                 Expanded(
                   child: RadioListTile<String>(
                     value: 'No',
-                    groupValue: hasPhysicalShop,
-                    onChanged: (val) => setState(() => hasPhysicalShop = val!),
+                    groupValue: fixedLocation,
+                    onChanged: (val) => setState(() => fixedLocation = val!),
                     title: Text('No', style: TextStyle(color: textColor)),
                     activeColor: AppColors.themeGreen,
                   ),
                 ),
               ],
             ),
-            CustomText14(text: "Do you offer mobile assistance?", color: textColor),
+            CustomText14(text: "Do you offer mobile delivery or roadside service?", color: textColor),
             Row(
               children: [
                 Expanded(
                   child: RadioListTile<String>(
                     value: 'Yes',
-                    groupValue: offersMobileAssistance,
-                    onChanged: (val) => setState(() => offersMobileAssistance = val!),
+                    groupValue: mobileService,
+                    onChanged: (val) => setState(() => mobileService = val!),
                     title: Text('Yes', style: TextStyle(color: textColor)),
                     activeColor: AppColors.themeGreen,
                   ),
@@ -136,16 +122,16 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                 Expanded(
                   child: RadioListTile<String>(
                     value: 'No',
-                    groupValue: offersMobileAssistance,
-                    onChanged: (val) => setState(() => offersMobileAssistance = val!),
+                    groupValue: mobileService,
+                    onChanged: (val) => setState(() => mobileService = val!),
                     title: Text('No', style: TextStyle(color: textColor)),
                     activeColor: AppColors.themeGreen,
                   ),
                 ),
               ],
             ),
-            CustomText14(text: "Address", color: textColor),
-            CustomTextField(controller: addressController, label: ''),
+            CustomText14(text: "Address (If any)", color: textColor),
+            CustomTextField(controller: addressController),
             Row(
               children: [
                 Expanded(
@@ -153,7 +139,7 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText14(text: "City", color: textColor),
-                      CustomTextField(controller: cityController, label: ''),
+                      CustomTextField(controller: cityController),
                     ],
                   ),
                 ),
@@ -163,34 +149,30 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText14(text: "State", color: textColor),
-                      CustomTextField(controller: stateController, label: ''),
+                      CustomTextField(controller: stateController),
                     ],
                   ),
                 ),
               ],
             ),
             CustomText14(text: "E-mail", color: textColor),
-            CustomTextField(controller: emailController, label: ''),
+            CustomTextField(controller: emailController),
             CustomText14(text: "Phone", color: textColor),
-            CustomTextField(controller: phoneController, label: ''),
+            CustomTextField(controller: phoneController),
             CustomText14(text: "Website", color: textColor),
-            CustomTextField(controller: websiteController, label: ''),
+            CustomTextField(controller: websiteController),
             CustomText14(text: "Language Preferences", color: textColor),
             CustomDropdownField(
-              // label: "Language Preferences",
-              value: languageController.text.isEmpty ? null : languageController.text,
               items: languageOptions,
-              onChanged: (value) {
-                setState(() => languageController.text = value ?? '');
-              },
+              value: selectedLanguage,
+              label: "Select Language",
+              onChanged: (val) => setState(() => selectedLanguage = val),
             ),
-
-            const SizedBox(height: 16),
             CustomText14(text: "Description", color: textColor),
             TextField(
               controller: descriptionController,
-              minLines: 6,
               maxLines: 6,
+              minLines: 6,
               style: TextStyle(color: textColor),
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
@@ -215,21 +197,17 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
             ),
 
             const SizedBox(height: 24),
+
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-
-                      Navigator.pop(context);
-
-                    },
-
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeRed,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                     ),
-                    child: const Text('Cancel'),
+                    child: const Text("Cancel"),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -240,7 +218,7 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                       backgroundColor: AppColors.themeGreen,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                     ),
-                    child: const Text('Next'),
+                    child: const Text("Next"),
                   ),
                 ),
               ],
