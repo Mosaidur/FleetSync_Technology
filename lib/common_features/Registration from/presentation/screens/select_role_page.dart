@@ -133,6 +133,12 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
                   if (selectedRole == "Driver"){
                     //driver personal Info page
                     Navigator.pushNamed(context, '/driverPersonalInfo');
+                  }else if(selectedRole == "Company" ){
+                  Navigator.pushNamed(context, '/companyRegFormScreen');
+
+                  }else if (selectedRole == "Mechanics" ){
+
+                    Navigator.pushNamed(context, '/mechanicRegFormScreen');
                   }
 
                   // Navigator.pushNamed(context, '/selectRole');
