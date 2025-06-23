@@ -202,7 +202,10 @@ class _CookRegFormScreenState extends State<CookRegFormScreen> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeRed,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
@@ -213,7 +216,11 @@ class _CookRegFormScreenState extends State<CookRegFormScreen> {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Navigator.pushNamed(context, '/getYourPackageScreen');
+
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeGreen,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),

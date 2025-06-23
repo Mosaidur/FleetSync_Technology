@@ -1,3 +1,5 @@
+import 'package:fleetsynctechnology/common_features/Subscription/presentation/screens/subscriber_welcome.dart';
+import 'package:fleetsynctechnology/common_features/Subscription/presentation/screens/subscription.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/forgot_pass.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/otpVerify.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/reset_pass_otp.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
         '/resetPass': (context) => const ResetPasswordScreen(),
         '/resetPassOTP': (context) => const ResetPasswordOtpScreen(),
         '/selectRole': (context) => const SelectRoleScreen(),
+        '/getYourPackageScreen': (context) => GetYourPackageScreen(),
+        '/subscriberWelcomeScreen': (context) => SubscriberWelcomeScreen(),
 
         // Role 2: Driver
         '/driverPersonalInfo': (context) => const DriverRegPersonalInfoScreen(),
