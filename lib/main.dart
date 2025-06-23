@@ -7,7 +7,8 @@ import 'package:fleetsynctechnology/common_features/auth/presentation/screens/re
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/signup.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
-import 'package:fleetsynctechnology/role_company/Registration%20Form/presentation/screens/reg_form_personal_info.dart';
+import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
+import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'config/theme.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
         '/resetPassOTP': (context) => const ResetPasswordOtpScreen(),
         '/selectRole': (context) => const SelectRoleScreen(),
         '/driverPersonalInfo': (context) => const DriverRegPersonalInfoScreen(),
-        // '/driverVehicleInfo' : (context) => const DriverVehicleInfoScreen(),
+        '/driverVehicleInfo' : (context) => const DriverVehicleInfoScreen(),
         // Add other routes as needed
       },
     );

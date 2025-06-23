@@ -312,7 +312,7 @@ class _DriverRegPersonalInfoScreenState extends State<DriverRegPersonalInfoScree
                         print("Description: $description");
 
                         // Proceed to next screen or logic
-                        // Navigator.pushNamed(context, '/driverVehicleInfo');
+                        Navigator.pushNamed(context, '/driverVehicleInfo');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.themeGreen,
