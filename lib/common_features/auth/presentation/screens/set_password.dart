@@ -33,6 +33,12 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
         errorText = null;
         print('Password set: $pass');
         // Proceed with password setup logic
+
+
+        Navigator.pushNamed(context, '/selectRole');
+
+
+
       }
     });
   }

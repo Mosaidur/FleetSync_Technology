@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/common_features/Registration%20from/presentation/screens/select_role_page.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/forgot_pass.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/otpVerify.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/reset_pass_otp.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/setPass': (context) => SetPasswordScreen(),
         '/resetPass': (context) => ResetPasswordScreen(),
         '/resetPassOTP': (context) => ResetPasswordOtpScreen(),
+        '/selectRole' : (context) => SelectRoleScreen(),
 
       },
     );
