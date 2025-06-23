@@ -180,6 +180,8 @@ class _CompanyRegFormScreenState extends State<CompanyRegFormScreen> {
                     onPressed: () {
                       // Next logic here
 
+                      Navigator.pushNamed(context, '/getYourPackageScreen');
+
 
 
                     },

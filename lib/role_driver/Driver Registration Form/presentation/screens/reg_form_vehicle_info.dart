@@ -160,6 +160,9 @@ class _DriverVehicleInfoScreenState extends State<DriverVehicleInfoScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Skip logic here
+
+                      Navigator.pushNamed(context, '/getYourPackageScreen');
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeYellow,
@@ -173,6 +176,9 @@ class _DriverVehicleInfoScreenState extends State<DriverVehicleInfoScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Done logic here
+
+                      Navigator.pushNamed(context, '/getYourPackageScreen');
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeGreen,

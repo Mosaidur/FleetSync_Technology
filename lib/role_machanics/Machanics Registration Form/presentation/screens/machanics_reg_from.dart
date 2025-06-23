@@ -235,7 +235,13 @@ class _MechanicRegFormScreenState extends State<MechanicRegFormScreen> {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Navigator.pushNamed(context, '/getYourPackageScreen');
+
+
+
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeGreen,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
