@@ -121,6 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     // Forgot password logic
                     print("Forget Password?");
+                    Navigator.pushNamed(context, '/forgotPass');
                   },
                   child: const Text(
                     'Forget Password?',

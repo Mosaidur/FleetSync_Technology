@@ -148,6 +148,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   final otp = getOtpCode();
                   print("Entered OTP: $otp");
                   // Add your verification logic here
+
+                  Navigator.pushNamed(context, '/setPass');
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,

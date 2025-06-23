@@ -1,4 +1,6 @@
+import 'package:fleetsynctechnology/common_features/auth/presentation/screens/forgot_pass.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/otpVerify.dart';
+import 'package:fleetsynctechnology/common_features/auth/presentation/screens/set_password.dart';
 import 'package:fleetsynctechnology/common_features/auth/presentation/screens/signup.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
         '/otpVerify': (context) =>  OtpVerificationScreen(),
+        '/forgotPass': (context) => ForgotPasswordScreen(),
+        '/setPass': (context) => SetPasswordScreen(),
 
       },
     );
