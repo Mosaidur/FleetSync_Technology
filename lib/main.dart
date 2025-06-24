@@ -11,10 +11,12 @@ import 'package:fleetsynctechnology/common_features/splash_onbording/presentatio
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
 import 'package:fleetsynctechnology/role_company/Company%20Registration%20Form/presentation/screens/company_reg_form.dart';
 import 'package:fleetsynctechnology/role_cooks/Cooks%20Registration%20Form/presentation/screens/cooks_reg_from.dart';
+import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/screens/driver_home_screen.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
 import 'package:fleetsynctechnology/role_fule_provider/Fuel%20Provider%20Registration%20Form/presentation/screens/fuel_provider_reg_from.dart';
 import 'package:fleetsynctechnology/role_machanics/Machanics%20Registration%20Form/presentation/screens/machanics_reg_from.dart';
+import 'package:fleetsynctechnology/shared/widgets/dummy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'config/theme.dart';
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Themed App',
       theme: themeProvider.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-      initialRoute: '/',
+      initialRoute: '/driverHome',
       routes: {
         // Role 1: Common
         '/': (context) => const SplashScreen(),
@@ -60,6 +62,13 @@ class MyApp extends StatelessWidget {
         // Role 2: Driver
         '/driverPersonalInfo': (context) => const DriverRegPersonalInfoScreen(),
         '/driverVehicleInfo': (context) => const DriverVehicleInfoScreen(),
+
+        '/driverHome': (context) => const DriverHomeScreen(),
+        '/driverMap': (context) => const PlaceholderScreen(title: 'Map'),
+        '/driverChats': (context) => const PlaceholderScreen(title: 'Chats'),
+        '/driverList': (context) => const PlaceholderScreen(title: 'List'),
+        '/truckSales': (context) => const PlaceholderScreen(title: 'Truck Sales'),
+        '/fuelCard': (context) => const PlaceholderScreen(title: 'Fuel Card'),
 
         // Role 3: Company
         '/companyRegFormScreen': (context) => const CompanyRegFormScreen(),

@@ -145,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   // Login logic
                   print("Sign In");
+                  Navigator.pushNamed(context, '/driverHome');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,
