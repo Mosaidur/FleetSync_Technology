@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:flutter/material.dart';
 
 class UpcomingFeatureContainer extends StatelessWidget {
@@ -33,40 +34,39 @@ class UpcomingFeatureContainer extends StatelessWidget {
   Widget _buildFeatureItem(BuildContext context, Map<String, dynamic> feature) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final textColor = isDark ? AppColors.primaryTextOnDark : AppColors.primaryTextOnLight;
 
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => debugPrint('Tapped on: ${feature['title']}'),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-          margin: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-            color: theme.cardColor,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: isDark ? Colors.black26 : Colors.grey.withOpacity(0.1),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              SizedBox(width: 32, height: 32, child: feature['icon'] as Widget),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  feature['title'] as String,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: theme.textTheme.bodyLarge?.color,
-                  ),
+    return GestureDetector(
+      onTap: () => debugPrint('Tapped on: ${feature['title']}'),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        // decoration: BoxDecoration(
+        //   color: theme.cardColor,
+        //   borderRadius: BorderRadius.circular(12),
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: isDark ? Colors.black26 : Colors.grey.withOpacity(0.1),
+        //       blurRadius: 4,
+        //       offset: const Offset(0, 2),
+        //     ),
+        //   ],
+        // ),
+        child: Row(
+          children: [
+            SizedBox(width: 32, height: 32, child: feature['icon'] as Widget),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                feature['title'] as String,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: theme.textTheme.bodyLarge?.color,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -77,8 +77,8 @@ class UpcomingFeatureContainer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(12),
+      // margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(top: 5,bottom: 5,left: 5,right: 5),
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(16),
@@ -94,18 +94,20 @@ class UpcomingFeatureContainer extends StatelessWidget {
               color: theme.textTheme.titleMedium?.color,
             ),
           ),
-          const SizedBox(height: 12),
-          // Build rows with 2 items each
-          for (int i = 0; i < _features.length; i += 2)
-            Row(
-              children: [
-                _buildFeatureItem(context, _features[i]),
-                if (i + 1 < _features.length)
-                  _buildFeatureItem(context, _features[i + 1])
-                else
-                  const Expanded(child: SizedBox()), // empty space for odd count
-              ],
+          const SizedBox(height: 8),
+          GridView.builder(
+            itemCount: _features.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 2.5,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 2,
             ),
+            itemBuilder: (context, index) =>
+                _buildFeatureItem(context, _features[index]),
+          ),
         ],
       ),
     );
