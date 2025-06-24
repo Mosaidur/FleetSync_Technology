@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fleetsynctechnology/shared/widgets/customTextField.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
 import 'package:fleetsynctechnology/shared/widgets/custom_text_14.dart';
@@ -25,6 +28,43 @@ class _DriverRegPersonalInfoScreenState extends State<DriverRegPersonalInfoScree
   final TextEditingController previousCompanyController = TextEditingController();
   final TextEditingController cdlTypeController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  final ImagePicker _picker = ImagePicker();
+  File? _pickedImage;
+
+  Future<void> _pickImageFromSource(ImageSource source) async {
+    final XFile? pickedFile = await _picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _pickedImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<void> _showImageSourceDialog() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Select Image Source'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _pickImageFromSource(ImageSource.camera);
+            },
+            child: const Text('Camera'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _pickImageFromSource(ImageSource.gallery);
+            },
+            child: const Text('Gallery'),
+          ),
+        ],
+      ),
+    );
+  }
 
   String driverType = 'Company Driver';
   String trailerOwnership = 'Yes';
@@ -66,10 +106,14 @@ class _DriverRegPersonalInfoScreenState extends State<DriverRegPersonalInfoScree
               CustomText14(text: "Upload Photo", color: textColor),
               const SizedBox(height: 8),
               Center(
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.grey[300],
-                  child: const Icon(Icons.person, size: 40),
+                child: GestureDetector(
+                  onTap: _showImageSourceDialog, // or _pickImageFromSource(ImageSource.gallery)
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.grey[300],
+                    backgroundImage: _pickedImage != null ? FileImage(_pickedImage!) : null,
+                    child: _pickedImage == null ? Icon(Icons.person, size: 40,color: textColor ,) : null,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
