@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/role_driver/chat/presentation/widgets/inbox_request.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
@@ -42,7 +43,7 @@ class ChatPage extends StatelessWidget {
             child: TabBarView(
               children: [
                 InboxListWidget(),
-                InboxListWidget(), // Replace with RequestListWidget() when ready
+                InboxRequestListWidget(), // Replace with RequestListWidget() when ready
               ],
             ),
           ),

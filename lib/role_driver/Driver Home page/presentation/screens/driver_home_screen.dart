@@ -1,4 +1,5 @@
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/home_widget.dart';
+import 'package:fleetsynctechnology/role_driver/Fuel%20Provider/presentation/widgets/fuel_provider_page.dart';
 import 'package:fleetsynctechnology/role_driver/chat/presentation/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     const ChatPage(),// Index 2
     const Center(child: Text('List Page')), // Index 3
     const Center(child: Text('Truck Sales Page')), // Index 4
-    const Center(child: Text('Fuel Card Page')), // Index 5
+    const FuelProviderListPage(), // Index 5
   ];
 
 
