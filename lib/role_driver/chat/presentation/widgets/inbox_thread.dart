@@ -9,6 +9,7 @@ class InboxThreadWidget extends StatelessWidget {
   final String imageUrl;
   final String time;
   final String unseenMessage;
+  final VoidCallback onTap;
 
   const InboxThreadWidget({
     super.key,
@@ -17,6 +18,7 @@ class InboxThreadWidget extends StatelessWidget {
     required this.imageUrl,
     required this.time,
     required this.unseenMessage,
+    required this.onTap,
   });
 
   @override
@@ -27,102 +29,102 @@ class InboxThreadWidget extends StatelessWidget {
         ? AppColors.primaryTextOnDark
         : AppColors.primaryTextOnLight;
 
-    final bgColor = isDark
-        ? const Color(0xFF1F1F2E)
-        : Colors.white;
+    final bgColor = isDark ? const Color(0xFF1F1F2E) : Colors.white;
 
-    return Container(
-      padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          if (!isDark)
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            if (!isDark)
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Profile Image
+            CircleAvatar(
+              radius: 28,
+              backgroundImage: NetworkImage(imageUrl),
+              backgroundColor: Colors.grey.shade200,
             ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Profile Image
-          CircleAvatar(
-            radius: 28,
-            backgroundImage: NetworkImage(imageUrl),
-            backgroundColor: Colors.grey.shade200,
-          ),
-          const SizedBox(width: 12),
+            const SizedBox(width: 12),
 
-          // Name and Message
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            // Name and Message
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.themeGreen,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: textColor.withOpacity(0.8),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(width: 8),
+
+            // Time & Unseen Bubble
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.themeGreen,
+                if (unseenMessage != "0")
+                  Container(
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: const BoxDecoration(
+                      color: Colors.redAccent,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      unseenMessage,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Text(
-                  message,
+                  time,
                   style: TextStyle(
-                    fontSize: 12,
-                    color: textColor.withOpacity(0.8),
+                    fontSize: 10,
+                    color: textColor.withOpacity(0.6),
                   ),
-                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
-          ),
-
-          const SizedBox(width: 8),
-
-          // Time & Unseen Bubble
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              // Unseen Message Circle
-              if (unseenMessage != "0")
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    unseenMessage,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              const SizedBox(height: 8),
-
-              // Time Text
-              Text(
-                time,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: textColor.withOpacity(0.6),
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

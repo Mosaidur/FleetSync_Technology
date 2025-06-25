@@ -40,6 +40,10 @@ class InboxListWidget extends StatelessWidget {
               imageUrl: chat['imageUrl']!,
               time: chat['time']!,
               unseenMessage: chat['unseen']!,
+              onTap: () {
+                debugPrint(chat['name']!);
+                // Navigate to chat detail or show bottom sheet, etc.
+              },
             ),
             // Divider(
             //   color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
