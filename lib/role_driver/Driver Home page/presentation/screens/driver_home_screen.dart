@@ -1,4 +1,5 @@
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/home_widget.dart';
+import 'package:fleetsynctechnology/role_driver/chat/presentation/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
@@ -25,8 +26,9 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
   final List<Widget> _pages = [
     const HomeScreenWidget(), // Index 0
-    const Center(child: Text('Map Page')), // Index 1
-    const Center(child: Text('Chat Page')), // Index 2
+    const Center(child: Text('Chat Page')), // Index 1
+
+    const ChatPage(),// Index 2
     const Center(child: Text('List Page')), // Index 3
     const Center(child: Text('Truck Sales Page')), // Index 4
     const Center(child: Text('Fuel Card Page')), // Index 5

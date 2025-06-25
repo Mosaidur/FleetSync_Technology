@@ -1,10 +1,8 @@
-import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/popular_company.dart';
 import 'package:fleetsynctechnology/role_driver/Driver Home page/presentation/widgets/truck_sale_section.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/upcoming_feature.dart';
 import 'package:fleetsynctechnology/shared/widgets/dynamic_image_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   const HomeScreenWidget({super.key});
