@@ -1,3 +1,5 @@
+import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/company_details.dart';
+import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
@@ -129,6 +131,8 @@ class CardDetailsScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   debugPrint('Send Request clicked');
+
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,
