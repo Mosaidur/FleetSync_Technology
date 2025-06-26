@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/widgets/create_sales_post.dart';
 import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/widgets/truck_sales_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +44,7 @@ class TruckSalesPage extends StatelessWidget {
             child: TabBarView(
               children: const [
                 TruckSalesListWidget(),
-                // CreateSalesPostWidget(),
+                CreateSalesPostWidget(),
               ],
             ),
           ),

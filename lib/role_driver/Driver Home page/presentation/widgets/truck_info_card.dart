@@ -12,6 +12,7 @@ class TruckSaleCard extends StatelessWidget {
   final VoidCallback onSaveTap;
   final VoidCallback onViewTap;
   final VoidCallback onShareTap;
+  final String buttonTitle;
 
   const TruckSaleCard({
     super.key,
@@ -22,6 +23,8 @@ class TruckSaleCard extends StatelessWidget {
     required this.onSaveTap,
     required this.onShareTap,
     required this.onViewTap,
+    this.buttonTitle = "View Details",
+
   });
 
   @override
@@ -138,7 +141,7 @@ class TruckSaleCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              child: const Text('View Details'),
+              child: Text(buttonTitle),
             ),
           ),
         ],
