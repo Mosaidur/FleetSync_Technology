@@ -1,4 +1,5 @@
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/truck_info_card.dart';
+import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/screens/create_a_post.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
@@ -69,6 +70,7 @@ class CreateSalesPostWidget extends StatelessWidget {
                 onTap: () {
                   debugPrint("Create Icon Tapped");
                   // Trigger create form or modal
+                  Navigator.pushNamed(context, '/createSalePost');
                 },
                 child: Container(
                   height: 100,
@@ -77,12 +79,12 @@ class CreateSalesPostWidget extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.transparent,
                     border: Border.all(
-                      color: Colors.white,
+                      color: textColor,
                       width: 2.0,
                       style: BorderStyle.solid, // Solid border as fallback
                     ),
                   ),
-                  child: const Icon(Icons.add, size: 48, color: Colors.white),
+                  child: Icon(Icons.add, size: 48, color: textColor),
                 ),
               ),
             ),
@@ -105,6 +107,7 @@ class CreateSalesPostWidget extends StatelessWidget {
                     ),
                     onPressed: () {
                       debugPrint("Create Now Button Tapped");
+                      Navigator.pushNamed(context, '/createSalePost');
                     },
                     child: const Text(
                       'Create Now',

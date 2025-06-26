@@ -1,5 +1,5 @@
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/truck_info_card.dart';
-import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/widgets/truck_details_screen.dart';
+import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/screens/truck_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';

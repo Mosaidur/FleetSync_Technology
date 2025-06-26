@@ -15,6 +15,7 @@ import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentatio
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
 import 'package:fleetsynctechnology/role_driver/Fuel%20Provider/presentation/widgets/fuel_provider_page.dart';
+import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/screens/create_a_post.dart';
 import 'package:fleetsynctechnology/role_driver/chat/presentation/screens/messege_screen.dart';
 import 'package:fleetsynctechnology/role_fule_provider/Fuel%20Provider%20Registration%20Form/presentation/screens/fuel_provider_reg_from.dart';
 import 'package:fleetsynctechnology/role_machanics/Machanics%20Registration%20Form/presentation/screens/machanics_reg_from.dart';
@@ -77,6 +78,12 @@ class MyApp extends StatelessWidget {
         '/driverList': (context) => const PlaceholderScreen(title: 'List'),
         '/truckSales': (context) => const PlaceholderScreen(title: 'Truck Sales'),
         '/fuelCard': (context) => const FuelProviderListPage(),
+
+
+
+
+
+        '/createSalePost' : ( context) =>  CreatePostPage(),
 
 
         // Role 3: Company
