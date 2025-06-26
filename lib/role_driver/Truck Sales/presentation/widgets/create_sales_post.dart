@@ -92,7 +92,7 @@ class CreateSalesPostWidget extends StatelessWidget {
             // Create Now Button
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(left: ),
+                padding: const EdgeInsets.only(left: 10, right: 10 ),
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
