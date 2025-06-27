@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
@@ -70,6 +71,7 @@ class _TruckDetailsScreenState extends State<TruckDetailsScreen> {
     final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     final textColor = isDark ? Colors.white : Colors.black;
     final backgroundColor = isDark ? const Color(0xFF121212) : Colors.white;
+    final priceBarColor = isDark ? AppColors.themeGreen.withOpacity(0.1) : AppColors.themeGreen;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -128,14 +130,14 @@ class _TruckDetailsScreenState extends State<TruckDetailsScreen> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.themeGreen.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(0),
+                  color: priceBarColor,
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Price", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textColor)),
-                    Text("\$${widget.price}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textColor)),
+                    Text("Price", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                    Text("\$${widget.price}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                   ],
                 ),
               ),

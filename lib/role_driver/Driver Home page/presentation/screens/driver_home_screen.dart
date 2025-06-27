@@ -1,6 +1,7 @@
 import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/home_widget.dart';
 import 'package:fleetsynctechnology/role_driver/Fuel%20Provider/presentation/widgets/fuel_provider_page.dart';
+import 'package:fleetsynctechnology/role_driver/Map/presentation/widgets/map_main_page.dart';
 import 'package:fleetsynctechnology/role_driver/Truck%20Sales/presentation/widgets/truck_sales_widget.dart';
 import 'package:fleetsynctechnology/role_driver/chat/presentation/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
   final List<Widget> _pages = [
     const HomeScreenWidget(), // Index 0
-    const Center(child: Text('Chat Page')), // Index 1
+    const MapMainPage(), // Index 1
 
     const ChatPage(),// Index 2
     const DirectorListPage(), // Index 3
