@@ -354,7 +354,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
             child: UpcomingFeatureContainer (),
           ),
 
-          PopularCompaniesSection(companyList: mockCompanies,),
+          PopularCompaniesSection(companyList: mockCompanies),
 
           const SizedBox(height: 8),
 

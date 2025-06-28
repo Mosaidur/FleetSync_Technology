@@ -153,15 +153,18 @@ class CompanyDetailsPage extends StatelessWidget {
 
                         print(" Send Request ");
 
-                        // showDialog(
-                        //   context: context,
-                        //   barrierDismissible: true,
-                        //   builder: (_) => const Dialog(
-                        //     backgroundColor: Colors.transparent,
-                        //     insetPadding: EdgeInsets.symmetric(horizontal: 16),
-                        //     child: VerificationPopup(verified: false), // Set to true or false
-                        //   ),
-                        // );
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (_) => const Dialog(
+                            backgroundColor: Colors.transparent,
+                            insetPadding: EdgeInsets.symmetric(horizontal: 16),
+                            child: VerificationPopup(verified: false), // Set to true or false
+                          ),
+                        );
+
+                        Navigator.pushNamed(context, '/driverHome');
+
 
 
                       },

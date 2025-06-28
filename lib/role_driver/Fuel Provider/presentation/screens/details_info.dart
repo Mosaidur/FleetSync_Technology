@@ -133,6 +133,8 @@ class CardDetailsScreen extends StatelessWidget {
                   debugPrint('Send Request clicked');
 
 
+                  Navigator.pushNamed(context, '/driverHome');
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,

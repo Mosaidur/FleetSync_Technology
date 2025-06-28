@@ -277,6 +277,9 @@ class _CreatePostPageState extends State<CreatePostPage> {
               child: ElevatedButton(
                 onPressed: () {
                   // Handle Post Submission
+
+                  Navigator.pushNamed(context, '/driverHome');
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.themeGreen,

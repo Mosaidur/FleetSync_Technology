@@ -1,4 +1,5 @@
 import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/drawer.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/home_widget.dart';
 import 'package:fleetsynctechnology/role_driver/Fuel%20Provider/presentation/widgets/fuel_provider_page.dart';
 import 'package:fleetsynctechnology/role_driver/Map/presentation/widgets/map_main_page.dart';
@@ -91,10 +92,10 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () => themeProvider.toggleTheme(),
-          ),
+          // IconButton(
+          //   icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+          //   onPressed: () => themeProvider.toggleTheme(),
+          // ),
           Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.menu, color: iconDefaultColor),
@@ -103,15 +104,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
           )
         ],
       ),
-      endDrawer: Drawer(
-        child: ListView(
-          children: const [
-            DrawerHeader(child: Text('Menu')),
-            ListTile(title: Text('Settings')),
-            ListTile(title: Text('Logout')),
-          ],
-        ),
-      ),
+      endDrawer: CustomDrawer(),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top: 5),

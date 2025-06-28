@@ -5,6 +5,7 @@ class DynamicImage extends StatelessWidget {
   final double width;
   final double height;
   final BoxFit fit;
+  final double borderRadius; // <-- New
 
   const DynamicImage({
     super.key,
@@ -12,6 +13,7 @@ class DynamicImage extends StatelessWidget {
     this.width = double.infinity,
     this.height = 160,
     this.fit = BoxFit.cover,
+    this.borderRadius = 8, // <-- Default radius
   });
 
   bool _isNetworkUrl(String url) {
@@ -21,7 +23,7 @@ class DynamicImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: _isNetworkUrl(imageUrl)
           ? Image.network(
         imageUrl,
@@ -44,7 +46,10 @@ class DynamicImage extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: Colors.grey[300],
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
       child: const Icon(
         Icons.broken_image,
         color: Colors.grey,

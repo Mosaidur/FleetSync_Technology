@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,19 +12,45 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-      );
-    });
+    _navigateFromSplash();
+  }
+
+  Future<void> _navigateFromSplash() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    final prefs = await SharedPreferences.getInstance();
+    final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    final role = prefs.getString('role');
+
+    String targetRoute = '/login';
+
+    if (isLoggedIn && role != null) {
+      switch (role) {
+        case 'driver':
+          targetRoute = '/driverHome';
+          break;
+        case 'fuel_provider':
+          targetRoute = '/fuelCard';
+          break;
+        case 'cook':
+          targetRoute = '/cookRegFormScreen';
+          break;
+        case 'company':
+          targetRoute = '/companyRegFormScreen';
+          break;
+        case 'mechanics':
+          targetRoute = '/mechanicRegFormScreen';
+          break;
+      }
+    }
+
+    Navigator.pushReplacementNamed(context, targetRoute);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Detect current theme brightness
     final theme = Theme.of(context);
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,

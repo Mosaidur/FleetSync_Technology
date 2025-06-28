@@ -242,12 +242,23 @@ class _TruckSalesListWidgetState extends State<TruckSalesListWidget> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Request Sent")),
                             );
+
+                            Navigator.pushNamed(context, '/driverHome');
+
                           },
                           onDeletePost: () {
                             debugPrint("Deleted the post");
+
+                            Navigator.pushNamed(context, '/driverHome');
+
                           },
                           onSaveAndChange: () {
                             debugPrint("Save And Change");
+
+
+                            Navigator.pushNamed(context, '/driverHome');
+
+
                           },
                         ),
                       ),

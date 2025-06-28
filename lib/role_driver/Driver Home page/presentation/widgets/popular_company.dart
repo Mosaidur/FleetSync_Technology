@@ -35,6 +35,8 @@ class PopularCompaniesSection extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Handle 'See All'
+
+
                   print("See all");
                 },
                 child: Text(

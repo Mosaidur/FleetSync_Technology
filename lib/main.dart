@@ -10,6 +10,7 @@ import 'package:fleetsynctechnology/common_features/select%20role/presentation/s
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/login_screen.dart';
 import 'package:fleetsynctechnology/common_features/splash_onbording/presentation/screens/splash_screen.dart';
 import 'package:fleetsynctechnology/role_company/Company%20Registration%20Form/presentation/screens/company_reg_form.dart';
+import 'package:fleetsynctechnology/role_cooks/Cook%20Homepage/presentation/screens/cook_homescreen.dart';
 import 'package:fleetsynctechnology/role_cooks/Cooks%20Registration%20Form/presentation/screens/cooks_reg_from.dart';
 import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/screens/driver_home_screen.dart';
@@ -26,22 +27,50 @@ import 'package:fleetsynctechnology/role_machanics/Machanics%20Registration%20Fo
 import 'package:fleetsynctechnology/shared/widgets/dummy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'config/theme.dart';
 import 'shared/providers/theme_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  final role = prefs.getString('role');
+
+  String initialRoute = '/';
+  if (isLoggedIn && role != null) {
+    switch (role) {
+      case 'driver':
+        initialRoute = '/driverHome';
+        break;
+      case 'fuel_provider':
+        initialRoute = '/fuelCard';
+        break;
+      case 'cook':
+        initialRoute = '/cookHomeScreen';
+        break;
+      case 'company':
+        initialRoute = '/companyRegFormScreen';
+        break;
+      case 'mechanics':
+        initialRoute = '/mechanicRegFormScreen';
+        break;
+    }
+  }
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
-      child: const MyApp(),
+      child: MyApp(initialRoute: initialRoute),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
 
 
   @override
@@ -52,7 +81,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Themed App',
       theme: themeProvider.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-      initialRoute:   '/driverHome',
+      initialRoute:   '/',
       routes: {
         // Role 1: Common
         '/': (context) => const SplashScreen(),
@@ -73,7 +102,7 @@ class MyApp extends StatelessWidget {
 
 
 
-        '/driverHome': (context) => const DriverHomeScreen(),
+        '/driverHome': (context) =>  DriverHomeScreen(),
         '/driverMap': (context) => const MapMainPage(),
         '/driverChats': (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
@@ -95,6 +124,9 @@ class MyApp extends StatelessWidget {
 
         // Role 3: Company
         '/companyRegFormScreen': (context) => const CompanyRegFormScreen(),
+        '/cookHomeScreen': (context) => const CookHomeScreen(),
+
+
 
         // Role 4: Mechanic
         '/mechanicRegFormScreen': (context) => const MechanicRegFormScreen(),
