@@ -164,8 +164,7 @@ class _TruckSalesListWidgetState extends State<TruckSalesListWidget> {
     }).toList();
 
 
-    return Container(
-      color: bgColor,
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -190,6 +189,7 @@ class _TruckSalesListWidgetState extends State<TruckSalesListWidget> {
               style: TextStyle(color: textColor),
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
@@ -198,81 +198,77 @@ class _TruckSalesListWidgetState extends State<TruckSalesListWidget> {
             ),
           ),
           const SizedBox(height: 12),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: GridView.builder(
-                itemCount: filteredTrucks.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 14,
-                  crossAxisSpacing: 14,
-                  childAspectRatio: 0.70,
-                ),
-                itemBuilder: (context, index) {
-                  final truck = filteredTrucks[index];
-                  return TruckSaleCard(
-                    imageUrl: truck['imageUrl'],
-                    truckModelName: truck['truckCompanyName'],
-                    location: truck['location'],
-                    info: '${truck['mileage']} • ${truck['engineType']} • ${truck['axells']} Axles',
-                    onSaveTap: () {
+          filteredTrucks.isNotEmpty
+              ? Wrap(
+            spacing: 14,
+            runSpacing: 14,
+            children: filteredTrucks.map((truck) {
+              return SizedBox(
+                width: (MediaQuery.of(context).size.width / 2) - 21, // for spacing
+                child: TruckSaleCard(
+                  imageUrl: truck['imageUrl'],
+                  truckModelName: truck['truckCompanyName'],
+                  location: truck['location'],
+                  info: '${truck['mileage']} • ${truck['engineType']} • ${truck['axells']} Axles',
+                  onSaveTap: () {
+                    // Save logic here
+                  },
+                  onViewTap: () {
+                    debugPrint("View: ${truck['truckCompanyName']}");
 
-                    },
-                    onViewTap: () {
-                      debugPrint("View: ${truck['truckCompanyName']}");
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => TruckDetailsScreen(
-                            imageUrl: truck['imageUrl'],
-                            additionalImages: List<String>.from(truck['additionalImages']),
-                            truckCompanyName: truck['truckCompanyName'],
-                            location: truck['location'],
-                            shortDescription: truck['shortDescription'],
-                            price: truck['price'],
-                            modelName: truck['modelName'],
-                            brandName: truck['brandName'],
-                            manufactureYear: truck['manufactureYear'],
-                            mileage: truck['mileage'],
-                            transmissionType: truck['transmissionType'],
-                            engineType: truck['engineType'],
-                            condition: truck['condition'],
-                            axells: truck['axells'],
-                            ownerName: truck['ownerName'],
-                            ownerImageUrl: truck['ownerImageUrl'],
-                            fullDescription: truck['fullDescription'],
-                            createPost: false,
-                            onSendRequest: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Request Sent")),
-                              );
-                            },
-                            onDeletePost: () {
-
-                              print("Deleted the post");
-
-                            },
-                            onSaveAndChange: () {
-
-                              print("Save And Change");
-
-                            },
-                          ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => TruckDetailsScreen(
+                          imageUrl: truck['imageUrl'],
+                          additionalImages: List<String>.from(truck['additionalImages']),
+                          truckCompanyName: truck['truckCompanyName'],
+                          location: truck['location'],
+                          shortDescription: truck['shortDescription'],
+                          price: truck['price'],
+                          modelName: truck['modelName'],
+                          brandName: truck['brandName'],
+                          manufactureYear: truck['manufactureYear'],
+                          mileage: truck['mileage'],
+                          transmissionType: truck['transmissionType'],
+                          engineType: truck['engineType'],
+                          condition: truck['condition'],
+                          axells: truck['axells'],
+                          ownerName: truck['ownerName'],
+                          ownerImageUrl: truck['ownerImageUrl'],
+                          fullDescription: truck['fullDescription'],
+                          createPost: false,
+                          onSendRequest: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Request Sent")),
+                            );
+                          },
+                          onDeletePost: () {
+                            debugPrint("Deleted the post");
+                          },
+                          onSaveAndChange: () {
+                            debugPrint("Save And Change");
+                          },
                         ),
-                      );
-
-
-                    },
-                    onShareTap: () {
-                      debugPrint("Share: ${truck['truckCompanyName']}");
-                    },
-                  );
-                },
-              ),
+                      ),
+                    );
+                  },
+                  onShareTap: () {
+                    debugPrint("Share: ${truck['truckCompanyName']}");
+                  },
+                ),
+              );
+            }).toList(),
+          )
+              : Padding(
+            padding: const EdgeInsets.only(top: 32),
+            child: Text(
+              'No trucks found.',
+              style: TextStyle(color: textColor.withOpacity(0.6)),
             ),
           ),
+
+
         ],
       ),
     );

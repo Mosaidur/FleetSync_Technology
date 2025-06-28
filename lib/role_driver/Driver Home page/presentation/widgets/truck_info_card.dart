@@ -141,7 +141,13 @@ class TruckSaleCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              child: Text(buttonTitle),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  buttonTitle,
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ),
             ),
           ),
         ],

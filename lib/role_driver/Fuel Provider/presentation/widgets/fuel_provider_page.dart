@@ -198,53 +198,48 @@ class _FuelProviderListPageState extends State<FuelProviderListPage> {
                     ),
                     const SizedBox(height: 12),
 
-                    // Grid View
+                    // Wrap
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: filteredList.isNotEmpty
-                          ? GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: filteredList.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
-                          childAspectRatio: 0.65,
-                        ),
-                        itemBuilder: (context, index) {
-                          final item = filteredList[index];
-                          return PopularCompanyCard(
-                            imageUrl: item['imageUrl'] ?? item['image'],
-                            companyName: item['companyName'] ?? item['name'] ?? '',
-                            location: item['location'] ?? '',
-                            rating: item['rating'].toString(),
-                            onSaveTap: () {
-                              debugPrint('Saved ${item['name']}');
-                            },
-                            onViewTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => CardDetailsScreen(
-                                    imageUrl: item['imageUrl'] ?? item['image'] ?? '',
-                                    companyName: item['companyName'] ?? item['name'] ?? '',
-                                    shortDescription: item['shortDescription'] ?? '',
-                                    rating: item['rating'].toString(),
-                                    totalReviews: item['totalReviews'].toString(),
-                                    cardType: item['cardType'] ?? '',
-                                    acceptedStations: item['acceptedStations'] ?? '',
-                                    discounts: item['discounts'] ?? '',
-                                    creditLine: item['creditLine'] ?? '',
-                                    cardCompanyName: item['cardCompanyName'] ?? '',
-                                    location: item['location'] ?? '',
-                                    fullDescription: item['fullDescription'] ?? '',
+                          ? Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: filteredList.map((item) {
+                          return SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 18, // Adjust for spacing
+                            child: PopularCompanyCard(
+                              imageUrl: item['imageUrl'] ?? item['image'],
+                              companyName: item['companyName'] ?? item['name'] ?? '',
+                              location: item['location'] ?? '',
+                              rating: item['rating'].toString(),
+                              onSaveTap: () {
+                                debugPrint('Saved ${item['name']}');
+                              },
+                              onViewTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => CardDetailsScreen(
+                                      imageUrl: item['imageUrl'] ?? item['image'] ?? '',
+                                      companyName: item['companyName'] ?? item['name'] ?? '',
+                                      shortDescription: item['shortDescription'] ?? '',
+                                      rating: item['rating'].toString(),
+                                      totalReviews: item['totalReviews'].toString(),
+                                      cardType: item['cardType'] ?? '',
+                                      acceptedStations: item['acceptedStations'] ?? '',
+                                      discounts: item['discounts'] ?? '',
+                                      creditLine: item['creditLine'] ?? '',
+                                      cardCompanyName: item['cardCompanyName'] ?? '',
+                                      location: item['location'] ?? '',
+                                      fullDescription: item['fullDescription'] ?? '',
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           );
-                        },
+                        }).toList(),
                       )
                           : Padding(
                         padding: const EdgeInsets.only(top: 32),

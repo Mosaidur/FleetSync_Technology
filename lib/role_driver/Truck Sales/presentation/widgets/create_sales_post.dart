@@ -229,75 +229,80 @@ class CreateSalesPostWidget extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Grid View
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: GridView.builder(
-                itemCount: trucks.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 14,
-                  crossAxisSpacing: 14,
-                  childAspectRatio: 0.70,
+              child: trucks.isEmpty
+                  ? const Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Text(
+                    'No posts found',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
                 ),
-                itemBuilder: (context, index) {
-                  final truck = trucks[index];
-                  return TruckSaleCard(
-                    imageUrl: truck['imageUrl'] ?? '',
-                    truckModelName: truck['modelName'] ?? 'Unknown Model',
-                    location: truck['location'] ?? 'Unknown',
-                    info: truck['shortDescription'] ?? 'No info available',
-                    onSaveTap: () {
-                      debugPrint("Saved: ${truck['modelName']}");
-                    },
-                    onViewTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => TruckDetailsScreen(
-                            imageUrl: truck['imageUrl'] ?? '',
-                            additionalImages: List<String>.from(truck['additionalImages'] ?? []),
-                            truckCompanyName: truck['truckCompanyName'] ?? '',
-                            location: truck['location'] ?? '',
-                            shortDescription: truck['shortDescription'] ?? '',
-                            price: truck['price'] ?? '0',
-                            modelName: truck['modelName'] ?? '',
-                            brandName: truck['brandName'] ?? '',
-                            manufactureYear: truck['manufactureYear'] ?? '',
-                            mileage: truck['mileage'] ?? '',
-                            transmissionType: truck['transmissionType'] ?? '',
-                            engineType: truck['engineType'] ?? '',
-                            condition: truck['condition'] ?? '',
-                            axells: truck['axells'] ?? '',
-                            ownerName: truck['ownerName'] ?? '',
-                            ownerImageUrl: truck['ownerImageUrl'] ?? '',
-                            fullDescription: truck['fullDescription'] ?? '',
-                            createPost: true,
-                            onSendRequest: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Request Sent")),
-                              );
-                            },
-                            onDeletePost: () {
-                              debugPrint("Deleted the post");
-                            },
-                            onSaveAndChange: () {
-                              debugPrint("Save And Change");
-                            },
+              )
+                  : Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                children: trucks.map((truck) {
+                  return SizedBox(
+                    width: (MediaQuery.of(context).size.width / 2) - 22, // 2 cards per row
+                    child: TruckSaleCard(
+                      imageUrl: truck['imageUrl'] ?? '',
+                      truckModelName: truck['modelName'] ?? 'Unknown Model',
+                      location: truck['location'] ?? 'Unknown',
+                      info: truck['shortDescription'] ?? 'No info available',
+                      onSaveTap: () {
+                        debugPrint("Saved: ${truck['modelName']}");
+                      },
+                      onViewTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => TruckDetailsScreen(
+                              imageUrl: truck['imageUrl'] ?? '',
+                              additionalImages: List<String>.from(truck['additionalImages'] ?? []),
+                              truckCompanyName: truck['truckCompanyName'] ?? '',
+                              location: truck['location'] ?? '',
+                              shortDescription: truck['shortDescription'] ?? '',
+                              price: truck['price'] ?? '0',
+                              modelName: truck['modelName'] ?? '',
+                              brandName: truck['brandName'] ?? '',
+                              manufactureYear: truck['manufactureYear'] ?? '',
+                              mileage: truck['mileage'] ?? '',
+                              transmissionType: truck['transmissionType'] ?? '',
+                              engineType: truck['engineType'] ?? '',
+                              condition: truck['condition'] ?? '',
+                              axells: truck['axells'] ?? '',
+                              ownerName: truck['ownerName'] ?? '',
+                              ownerImageUrl: truck['ownerImageUrl'] ?? '',
+                              fullDescription: truck['fullDescription'] ?? '',
+                              createPost: true,
+                              onSendRequest: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text("Request Sent")),
+                                );
+                              },
+                              onDeletePost: () {
+                                debugPrint("Deleted the post");
+                              },
+                              onSaveAndChange: () {
+                                debugPrint("Save And Change");
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    onShareTap: () {
-                      debugPrint("Share: ${truck['modelName']}");
-                    },
-                    buttonTitle: "Edit Post",
+                        );
+                      },
+                      onShareTap: () {
+                        debugPrint("Share: ${truck['modelName']}");
+                      },
+                      buttonTitle: "Edit Post",
+                    ),
                   );
-                },
+                }).toList(),
               ),
             ),
+
 
             const SizedBox(height: 20),
           ],

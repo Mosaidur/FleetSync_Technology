@@ -132,7 +132,13 @@ class PopularCompanyCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                child: const Text('View Details'),
+                child: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'View Details',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
               ),
             ),
           ),

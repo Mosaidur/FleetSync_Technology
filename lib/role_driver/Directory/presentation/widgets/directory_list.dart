@@ -173,6 +173,7 @@ class _DirectorListPageState extends State<DirectorListPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? Colors.white : Colors.black;
 
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -224,54 +225,46 @@ class _DirectorListPageState extends State<DirectorListPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 child: filteredList.isNotEmpty
-                    ? GridView.builder(
-                  itemCount: filteredList.length,
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    childAspectRatio: 0.65,
-                  ),
-                  itemBuilder: (context, index) {
+                    ? Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: List.generate(filteredList.length, (index) {
                     final item = filteredList[index];
-                    return PopularCompanyCard(
-                      imageUrl:
-                      item['imageUrl'] ?? item['coverImageUrl'],
-                      companyName:
-                      item['companyName'] ?? item['name'] ?? '',
-                      location: item['location'] ?? '',
-                      rating: item['rating'].toString(),
-                      onSaveTap: () {
-                        debugPrint('Saved ${item['companyName']}');
-                      },
-                      onViewTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => CompanyDetailsPage(
-                              coverImageUrl: item['coverImageUrl'] ??
-                                  item['imageUrl'],
-                              companyName: item['companyName'],
-                              location: item['location'],
-                              rating: item['rating'].toString(),
-                              totalReviews:
-                              item['totalReviews'].toString(),
-                              totalTruck: item['totalTruck'].toString(),
-                              totalEmployee:
-                              item['totalEmployee'].toString(),
-                              experience:
-                              item['experience'].toString(),
-                              officeHour: item['officeHour'],
-                              time: item['time'],
-                              description: item['description'],
+                    return SizedBox(
+                      width: (MediaQuery.of(context).size.width / 2) - 16, // For 2 per row with spacing
+                      child: PopularCompanyCard(
+                        imageUrl: item['imageUrl'] ?? item['coverImageUrl'],
+                        companyName: item['companyName'] ?? item['name'] ?? '',
+                        location: item['location'] ?? '',
+                        rating: item['rating'].toString(),
+                        onSaveTap: () {
+                          debugPrint('Saved ${item['companyName']}');
+                        },
+                        onViewTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => CompanyDetailsPage(
+                                coverImageUrl: item['coverImageUrl'] ?? item['imageUrl'],
+                                companyName: item['companyName'],
+                                location: item['location'],
+                                rating: item['rating'].toString(),
+                                totalReviews: item['totalReviews'].toString(),
+                                totalTruck: item['totalTruck'].toString(),
+                                totalEmployee: item['totalEmployee'].toString(),
+                                experience: item['experience'].toString(),
+                                officeHour: item['officeHour'],
+                                time: item['time'],
+                                description: item['description'],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     );
-                  },
+                  }),
                 )
+
                     : Center(
                   child: Text(
                     'No companies found.',

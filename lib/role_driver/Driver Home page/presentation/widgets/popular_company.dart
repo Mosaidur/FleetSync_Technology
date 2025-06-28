@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/company_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
@@ -50,57 +51,54 @@ class PopularCompaniesSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
 
-        // Two cards per screen in horizontal scroll
+        // Horizontal Scroll List
         SizedBox(
-          height: 300,
-          child: ListView.builder(
+          // height: 280,
+          child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: (companyList.length / 2).ceil(),
-            itemBuilder: (context, index) {
-              final first = companyList[index * 2];
-              final second = (index * 2 + 1 < companyList.length)
-                  ? companyList[index * 2 + 1]
-                  : null;
-
-              return SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: PopularCompanyCard(
-                        imageUrl: first['imageUrl'] ?? '',
-                        companyName: first['name'] ?? '',
-                        location: first['location'] ?? '',
-                        rating: first['rating'] ?? '0.0',
-                        onSaveTap: () {
-                          print("Save the company");
-                        },
-                        onViewTap: () {
-                          print("View Details");
-                        },
-                      ),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: companyList.map((item) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: SizedBox(
+                    width: (MediaQuery.of(context).size.width / 2)-5,
+                    child: PopularCompanyCard(
+                      imageUrl: item['coverImageUrl'] ?? item['imageUrl'] ?? '',
+                      companyName: item['companyName'] ?? item['name'] ?? '',
+                      location: item['location'] ?? '',
+                      rating: item['rating'].toString(),
+                      onSaveTap: () {
+                        debugPrint('Saved ${item['companyName']}');
+                      },
+                      onViewTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => CompanyDetailsPage(
+                              coverImageUrl: item['coverImageUrl'] ?? '',
+                              companyName: item['companyName'] ?? '',
+                              location: item['location'] ?? '',
+                              rating: item['rating'].toString(),
+                              totalReviews: item['totalReviews'].toString(),
+                              totalTruck: item['totalTruck'].toString(),
+                              totalEmployee: item['totalEmployee'].toString(),
+                              experience: item['experience'].toString(),
+                              officeHour: item['officeHour'] ?? '',
+                              time: item['time'] ?? '',
+                              description: item['description'] ?? '',
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    const SizedBox(width: 1),
-                    if (second != null)
-                      Expanded(
-                        child: PopularCompanyCard(
-                          imageUrl: second['imageUrl'] ?? '',
-                          companyName: second['name'] ?? '',
-                          location: second['location'] ?? '',
-                          rating: second['rating'] ?? '0.0',
-                          onSaveTap: () {},
-                          onViewTap: () {},
-                        ),
-                      )
-                    else
-                      const Spacer(),
-                  ],
-                ),
-              );
-            },
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ),
+
       ],
     );
   }
