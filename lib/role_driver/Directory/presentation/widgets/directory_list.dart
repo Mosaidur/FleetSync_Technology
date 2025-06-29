@@ -204,76 +204,84 @@ class _DirectorListPageState extends State<DirectorListPage> {
               ),
             ),
 
-            // Title Text
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Popular Companies',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: textColor),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Grid View inside Expanded
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
-                child: filteredList.isNotEmpty
-                    ? Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: List.generate(filteredList.length, (index) {
-                    final item = filteredList[index];
-                    return SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 16, // For 2 per row with spacing
-                      child: PopularCompanyCard(
-                        imageUrl: item['imageUrl'] ?? item['coverImageUrl'],
-                        companyName: item['companyName'] ?? item['name'] ?? '',
-                        location: item['location'] ?? '',
-                        rating: item['rating'].toString(),
-                        onSaveTap: () {
-                          debugPrint('Saved ${item['companyName']}');
-                        },
-                        onViewTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => CompanyDetailsPage(
-                                coverImageUrl: item['coverImageUrl'] ?? item['imageUrl'],
-                                companyName: item['companyName'],
-                                location: item['location'],
-                                rating: item['rating'].toString(),
-                                totalReviews: item['totalReviews'].toString(),
-                                totalTruck: item['totalTruck'].toString(),
-                                totalEmployee: item['totalEmployee'].toString(),
-                                experience: item['experience'].toString(),
-                                officeHour: item['officeHour'],
-                                time: item['time'],
-                                description: item['description'],
-                              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Title Text
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Popular Companies',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: textColor),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Grid View inside Expanded
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                      child: filteredList.isNotEmpty
+                          ? Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: List.generate(filteredList.length, (index) {
+                          final item = filteredList[index];
+                          return SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 16, // For 2 per row with spacing
+                            child: PopularCompanyCard(
+                              imageUrl: item['imageUrl'] ?? item['coverImageUrl'],
+                              companyName: item['companyName'] ?? item['name'] ?? '',
+                              location: item['location'] ?? '',
+                              rating: item['rating'].toString(),
+                              onSaveTap: () {
+                                debugPrint('Saved ${item['companyName']}');
+                              },
+                              onViewTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => CompanyDetailsPage(
+                                      coverImageUrl: item['coverImageUrl'] ?? item['imageUrl'],
+                                      companyName: item['companyName'],
+                                      location: item['location'],
+                                      rating: item['rating'].toString(),
+                                      totalReviews: item['totalReviews'].toString(),
+                                      totalTruck: item['totalTruck'].toString(),
+                                      totalEmployee: item['totalEmployee'].toString(),
+                                      experience: item['experience'].toString(),
+                                      officeHour: item['officeHour'],
+                                      time: item['time'],
+                                      description: item['description'],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           );
-                        },
-                      ),
-                    );
-                  }),
-                )
+                        }),
+                      )
 
-                    : Center(
-                  child: Text(
-                    'No companies found.',
-                    style:
-                    TextStyle(color: textColor.withOpacity(0.6)),
-                  ),
+                          : Center(
+                        child: Text(
+                          'No companies found.',
+                          style:
+                          TextStyle(color: textColor.withOpacity(0.6)),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+
+
           ],
         ),
       ),

@@ -12,45 +12,14 @@ class PopularCompaniesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
-    final textColor = isDark ? AppColors.primaryTextOnDark : AppColors.primaryTextOnLight;
+    // final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+    // final textColor = isDark ? AppColors.primaryTextOnDark : AppColors.primaryTextOnLight;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header Row
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Popular Companies',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Handle 'See All'
 
-
-                  print("See all");
-                },
-                child: Text(
-                  'See all',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: isDark ? Colors.grey : AppColors.themeGreen,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         const SizedBox(height: 8),
 
         // Horizontal Scroll List

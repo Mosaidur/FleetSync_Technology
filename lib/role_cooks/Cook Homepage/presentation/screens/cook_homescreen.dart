@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/role_cooks/Cook%20Homepage/presentation/widgets/cook_home_widgets.dart';
 import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
 import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/drawer.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/home_widget.dart';
@@ -10,14 +11,14 @@ import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
 
-class CookHomeScreen extends StatefulWidget {
-  const CookHomeScreen({super.key});
+class FuelProviderHomeScreen extends StatefulWidget {
+  const FuelProviderHomeScreen({super.key});
 
   @override
-  State<CookHomeScreen> createState() => _CookHomeScreenState();
+  State<FuelProviderHomeScreen> createState() => _FuelProviderHomeScreenState();
 }
 
-class _CookHomeScreenState extends State<CookHomeScreen> {
+class _FuelProviderHomeScreenState extends State<FuelProviderHomeScreen> {
   int _selectedIndex = 0;
 
   // final List<String> routeNames = [
@@ -30,32 +31,32 @@ class _CookHomeScreenState extends State<CookHomeScreen> {
   // ];
 
   final List<Widget> _pages = [
-    const HomeScreenWidget(), // Index 0
+    const CookHomeScreenWidget(), // Index 0
     const MapMainPage(), // Index 1
 
     const ChatPage(),// Index 2
-    const DirectorListPage(), // Index 3
+    // const DirectorListPage(), // Index 3
     const TruckSalesPage(), // Index 4
-    const FuelProviderListPage(), // Index 5
+    // const FuelProviderListPage(), // Index 5
   ];
 
 
   final List<IconData> icons = [
-    Icons.home,
-    Icons.map,
-    Icons.chat,
-    Icons.list_alt,
-    Icons.fire_truck,
-    Icons.local_gas_station,
+    Icons.house,
+    Icons.place,
+    Icons.email,
+    // Icons.contact_page,
+    Icons.discount,
+    // Icons.credit_card,
   ];
 
   final List<String> labels = [
     'Home',
     'Map',
     'Chats',
-    'List',
+    // 'List',
     'Truck Sales',
-    'Fuel Card',
+    // 'Fuel Card',
   ];
 
   void _onItemTapped(int index) {
@@ -119,13 +120,15 @@ class _CookHomeScreenState extends State<CookHomeScreen> {
             ],
           ),
           child: BottomNavigationBar(
+            selectedFontSize: 10,
+            unselectedFontSize: 10,
             currentIndex: _selectedIndex,
             backgroundColor: bottomContainerColor,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: AppColors.themeGreen,
             unselectedItemColor: iconDefaultColor,
             onTap: _onItemTapped,
-            items: List.generate(6, (index) {
+            items: List.generate(4, (index) {
               return BottomNavigationBarItem(
                 icon: Icon(icons[index]),
                 label: labels[index],

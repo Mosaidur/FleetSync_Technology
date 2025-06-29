@@ -2,6 +2,7 @@ import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectRoleScreen extends StatefulWidget {
   const SelectRoleScreen({super.key});
@@ -126,9 +127,16 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
               child: ElevatedButton(
                 onPressed: selectedRole == null
                     ? null
-                    : () {
+                    : () async {
                   // Continue logic
                   print("Selected role: $selectedRole");
+
+                  // Save role to shared preferences
+                  final prefs = await SharedPreferences.getInstance();
+                  final roleToSave = selectedRole!.toLowerCase();
+
+                  await prefs.setString('role', roleToSave);
+                  await prefs.setBool('isLoggedIn', true);
 
                   if (selectedRole == "Driver"){
                     //driver personal Info page

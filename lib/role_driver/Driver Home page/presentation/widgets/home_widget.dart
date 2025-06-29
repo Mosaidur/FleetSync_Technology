@@ -1,8 +1,11 @@
+import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/popular_company.dart';
 import 'package:fleetsynctechnology/role_driver/Driver Home page/presentation/widgets/truck_sale_section.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/widgets/upcoming_feature.dart';
+import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
 import 'package:fleetsynctechnology/shared/widgets/dynamic_image_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   const HomeScreenWidget({super.key});
@@ -292,6 +295,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+    final textColor = isDark ? AppColors.primaryTextOnDark : AppColors.primaryTextOnLight;
 
     return SingleChildScrollView(
       // padding: const EdgeInsets.all(16),
@@ -352,6 +357,39 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: UpcomingFeatureContainer (),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular Companies',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // Handle 'See All'
+
+
+                    print("See all");
+                  },
+                  child: Text(
+                    'See all',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: isDark ? Colors.grey : AppColors.themeGreen,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
 
           PopularCompaniesSection(companyList: mockCompanies),

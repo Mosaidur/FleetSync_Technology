@@ -37,17 +37,17 @@ class _LoginScreenState extends State<LoginScreen> {
     final iconColor = isDark ? Colors.white70 : Colors.black45;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () => themeProvider.toggleTheme(),
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+      //       onPressed: () => themeProvider.toggleTheme(),
+      //     )
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -175,17 +175,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         case 'driver':
                           Navigator.pushReplacementNamed(context, '/driverHome');
                           break;
-                        case 'fuel_provider':
-                          Navigator.pushReplacementNamed(context, '/fuelProviderHome');
+                        case 'fuel provider':
+                          Navigator.pushReplacementNamed(context, '/fuelProviderHomeScreen');
                           break;
                         case 'cook':
-                          Navigator.pushReplacementNamed(context, '/cookHome');
+                          Navigator.pushReplacementNamed(context,  '/cookHomeScreen');
                           break;
                         case 'company':
-                          Navigator.pushReplacementNamed(context, '/companyHome');
+                          Navigator.pushReplacementNamed(context, '/companyHomeScreen');
                           break;
                         case 'mechanics':
-                          Navigator.pushReplacementNamed(context, '/mechanicsHome');
+                          Navigator.pushReplacementNamed(context, '/mechanicHomeScreen');
                           break;
                       }
                     } else {

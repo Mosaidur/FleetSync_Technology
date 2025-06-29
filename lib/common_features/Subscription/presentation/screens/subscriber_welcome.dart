@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fleetsynctechnology/config/theme.dart';
 import 'package:fleetsynctechnology/shared/providers/theme_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SubscriberWelcomeScreen extends StatelessWidget {
   const SubscriberWelcomeScreen({super.key});
@@ -66,9 +67,29 @@ class SubscriberWelcomeScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Navigate to home or dashboard
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    final role = prefs.getString('role');
+                    print('Retrieved role: $role');
+
+                    if (role == 'driver') {
+                      Navigator.pushReplacementNamed(context, '/driverHome');
+                    } else if (role == 'company') {
+                      Navigator.pushReplacementNamed(context, '/companyHomeScreen');
+                    } else if (role == 'mechanics') {
+                      Navigator.pushReplacementNamed(context, '/mechanicHomeScreen');
+                    } else if (role == 'fuel provider') {
+                      Navigator.pushReplacementNamed(context, '/fuelProviderHomeScreen');
+                    } else if (role == 'cook') {
+                      Navigator.pushReplacementNamed(context, '/cookHomeScreen');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('No role found. Please select again.')),
+                      );
+                    }
                   },
+
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.themeGreen,
                     shape: RoundedRectangleBorder(

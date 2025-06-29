@@ -30,16 +30,16 @@ class _SplashScreenState extends State<SplashScreen> {
           targetRoute = '/driverHome';
           break;
         case 'fuel_provider':
-          targetRoute = '/fuelCard';
+          targetRoute = '/fuelProviderHomeScreen';
           break;
         case 'cook':
-          targetRoute = '/cookRegFormScreen';
+          targetRoute = '/cookHomeScreen';
           break;
         case 'company':
-          targetRoute = '/companyRegFormScreen';
+          targetRoute = '/companyHomeScreen';
           break;
         case 'mechanics':
-          targetRoute = '/mechanicRegFormScreen';
+          targetRoute = '/mechanicHomeScreen';
           break;
       }
     }

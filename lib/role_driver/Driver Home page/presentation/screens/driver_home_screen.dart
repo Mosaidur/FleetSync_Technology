@@ -41,12 +41,12 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
 
   final List<IconData> icons = [
-    Icons.home,
-    Icons.map,
-    Icons.chat,
-    Icons.list_alt,
-    Icons.fire_truck,
-    Icons.local_gas_station,
+    Icons.house,
+    Icons.place,
+    Icons.email,
+    Icons.contact_page,
+    Icons.discount,
+    Icons.credit_card,
   ];
 
   final List<String> labels = [
@@ -119,6 +119,8 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
             ],
           ),
           child: BottomNavigationBar(
+            selectedFontSize: 10,
+            unselectedFontSize: 10,
             currentIndex: _selectedIndex,
             backgroundColor: bottomContainerColor,
             type: BottomNavigationBarType.fixed,
