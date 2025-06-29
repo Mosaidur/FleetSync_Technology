@@ -26,146 +26,148 @@ class _SignUpScreenState extends State<SignUpScreen> {
         : AppColors.primaryTextOnLight;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () => themeProvider.toggleTheme(),
-            color: isDark ? Colors.white : Colors.black,
-          )
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 100),
-            Text(
-              'Sign Up',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: isDark ? AppColors.themeGreen : AppColors.themeGreen,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Create an account or log in to explore \nabout our app',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                color: textColor,
-              ),
-            ),
-            const SizedBox(height: 32),
-
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'First Name',
-                        style: TextStyle(fontSize: 14,color: textColor,),
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        controller: firstNameController,
-                        label: '',
-                      ),
-                    ],
-                  ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+      //       onPressed: () => themeProvider.toggleTheme(),
+      //       color: isDark ? Colors.white : Colors.black,
+      //     )
+      //   ],
+      // ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 100),
+              Text(
+                'Sign Up',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? AppColors.themeGreen : AppColors.themeGreen,
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Last Name',
-                        style: TextStyle(fontSize: 14,color: textColor,),
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        controller: lastNameController,
-                        label: '',
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 16),
-
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Phone Number',
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Create an account or log in to explore \nabout our app',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
                   color: textColor,
                 ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: phoneController,
-              label: '',
-            ),
-            const SizedBox(height: 24),
+              const SizedBox(height: 32),
 
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  print("Verify tapped");
-                  Navigator.pushNamed(context, '/otpVerify');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.themeGreen,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'First Name',
+                          style: TextStyle(fontSize: 14,color: textColor,),
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextField(
+                          controller: firstNameController,
+                          label: '',
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                child: const Text('Verify'),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Last Name',
+                          style: TextStyle(fontSize: 14,color: textColor,),
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextField(
+                          controller: lastNameController,
+                          label: '',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 24),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Already have an account? ",
+              const SizedBox(height: 16),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Phone Number',
                   style: TextStyle(
+                    fontSize: 14,
                     color: textColor,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    print("Go to Log In screen");
-                    // Navigator.pop(context);
-                    Navigator.pushNamed(context, '/login');
+              ),
+              const SizedBox(height: 8),
+              CustomTextField(
+                controller: phoneController,
+                label: '',
+              ),
+              const SizedBox(height: 24),
+
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("Verify tapped");
+                    Navigator.pushNamed(context, '/otpVerify');
                   },
-                  child: Text(
-                    "Log In",
-                    style: TextStyle(
-                      color: AppColors.themeGreen,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.themeGreen,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeGreen,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
                     ),
                   ),
+                  child: const Text('Verify'),
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 24),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already have an account? ",
+                    style: TextStyle(
+                      color: textColor,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print("Go to Log In screen");
+                      // Navigator.pop(context);
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text(
+                      "Log In",
+                      style: TextStyle(
+                        color: AppColors.themeGreen,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColors.themeGreen,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
