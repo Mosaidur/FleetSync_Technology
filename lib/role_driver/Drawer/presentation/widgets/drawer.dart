@@ -1,3 +1,4 @@
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/logout_dialog_box.dart';
 import 'package:fleetsynctechnology/shared/widgets/dynamic_image_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +98,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 4),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/EditProfile');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeGreen,
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
@@ -139,16 +142,65 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         textColor: textColor),
 
 
-                    _buildDrawerItem(Icons.language, "Language", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.bookmark, "Saved Posts", textColor: textColor, onTap: (){}),
+                    _buildDrawerItem(
+                        Icons.language, "Language",
+                        textColor: textColor,
+                        onTap: (){
+
+
+                        }
+                    ),
+                    _buildDrawerItem(
+                        Icons.bookmark,
+                        "Saved Posts",
+                        textColor: textColor,
+                        onTap: (){
+
+
+
+                        }),
                     _buildDrawerItem(Icons.notifications, "Notifications", textColor: textColor, onTap: (){}),
                     _buildDrawerItem(Icons.subscriptions, "Subscriptions", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.lock, "Change Password", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.info, "About Us", textColor: textColor, onTap: (){}),
+                    _buildDrawerItem(Icons.lock, "Change Password", textColor: textColor, onTap: (){
+
+                      Navigator.pushNamed(context, '/ChangePasswordPage');
+
+                    }),
+                    _buildDrawerItem(
+                        Icons.info,
+                        "About Us",
+                        textColor: textColor,
+                        onTap: (){
+
+                      Navigator.pushNamed(context, '/AboutUsPage');
+                    }),
+
                     _buildDrawerItem(Icons.privacy_tip, "Privacy Policy", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.article, "Terms & Conditions", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.help_outline, "FAQ", textColor: textColor, onTap: (){}),
-                    _buildDrawerItem(Icons.report_problem, "Report Problem", textColor: textColor, onTap: (){}),
+                    _buildDrawerItem(
+                        Icons.article,
+                        "Terms & Conditions",
+                        textColor: textColor,
+                        onTap: (){
+                          Navigator.pushNamed(context, '/TermsConditionsPage');
+                        }),
+
+                    _buildDrawerItem(
+                        Icons.help_outline,
+                        "FAQ",
+                        textColor: textColor,
+                        onTap: (){
+
+                          Navigator.pushNamed(context, '/FAQPage');
+                        }),
+
+                    _buildDrawerItem(
+                        Icons.report_problem,
+                        "Report Problem",
+                        textColor: textColor,
+                        onTap: (){
+
+                          Navigator.pushNamed(context, '/ReportProblemPage');
+                        }),
                   ],
                 ),
               ),
@@ -164,12 +216,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.w500),
                 ),
                 onTap: () async {
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.remove('isLoggedIn');
-                  await prefs.remove('role');
-                  // You can also use prefs.clear(); to clear all saved data if you want
+                  // final prefs = await SharedPreferences.getInstance();
+                  // await prefs.remove('isLoggedIn');
+                  // await prefs.remove('role');
+                  // // You can also use prefs.clear(); to clear all saved data if you want
+                  //
+                  // Navigator.pushReplacementNamed(context, '/login');
 
-                  Navigator.pushReplacementNamed(context, '/login');
+                    showDialog(
+                      context: context,
+                      builder: (context) => const LogoutPopUp(),
+                    );
+
+
+
                 },
               ),
             )

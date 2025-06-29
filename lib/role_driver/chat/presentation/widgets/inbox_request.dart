@@ -99,9 +99,26 @@ class _InboxRequestListWidgetState extends State<InboxRequestListWidget> {
                 unseenMessage: request['unseen']!,
                 onAvatarTap: () {
                   debugPrint('Avatar tapped: ${request['name']}');
+                  Navigator.pushNamed(
+                    context,
+                    '/driverChats',
+                    arguments: {
+                      'name': request['name']!,
+                      'imageUrl': request?['imageUrl']?? 'https://i.pravatar.cc/150?img=2',
+                    },
+                  );
                 },
                 onNameMessageTap: () {
                   debugPrint('Name/message tapped: ${request['name']}');
+                  Navigator.pushNamed(
+                    context,
+                    '/driverChats',
+                    arguments: {
+                      'name': request['name']!,
+                      'imageUrl': request?['imageUrl']?? 'https://i.pravatar.cc/150?img=2',
+                    },
+                  );
+
                 },
                 onAcceptTap: () {
                   debugPrint('Accepted: ${request['name']}');

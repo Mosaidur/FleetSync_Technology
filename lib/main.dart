@@ -13,6 +13,12 @@ import 'package:fleetsynctechnology/role_company/Company%20Registration%20Form/p
 import 'package:fleetsynctechnology/role_cooks/Cook%20Homepage/presentation/screens/cook_homescreen.dart';
 import 'package:fleetsynctechnology/role_cooks/Cooks%20Registration%20Form/presentation/screens/cooks_reg_from.dart';
 import 'package:fleetsynctechnology/role_driver/Directory/presentation/widgets/directory_list.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/about_us.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/change_password.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/edit_profile.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/faq.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/report_problem.dart';
+import 'package:fleetsynctechnology/role_driver/Drawer/presentation/widgets/terms_Condition.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Home%20page/presentation/screens/driver_home_screen.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_personal_info.dart';
 import 'package:fleetsynctechnology/role_driver/Driver%20Registration%20Form/presentation/screens/reg_form_vehicle_info.dart';
@@ -118,6 +124,12 @@ class MyApp extends StatelessWidget {
         '/fuelCard': (context) => const FuelProviderListPage(),
 
 
+        '/ChangePasswordPage' : (context) => const ChangePasswordPage(),
+        '/AboutUsPage' : (context) => const AboutUsPage(),
+        '/ReportProblemPage' : (context) => const ReportProblemPage(),
+        '/TermsConditionsPage' : (context) => const TermsConditionsPage(),
+        '/FAQPage' :(context) => const FAQPage(),
+        '/EditProfile' : (context) => const EditProfile(),
 
 
 
